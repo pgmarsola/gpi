@@ -1,4 +1,4 @@
-# GPI -Gestão de Performance Interna
+# GPI - Gestão de Performance Interna
 
 Aplicativo desenvolvido a fins de estudo.
 
