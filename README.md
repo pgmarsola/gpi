@@ -1,6 +1,6 @@
-# gpi
+# GPI - Gestão de Performance Interna
 
-A new Flutter project.
+Aplicativo desenvolvido a fins de estudo.
 
 ## Getting Started
 
