@@ -18,8 +18,8 @@ final $s_alert = Color(0xFFC0640E);
 final $s_success = Color(0xFF297805);
 
 //primary
-final $p_light = Color(0xFF5CBEFF);
-final $p_medium = Color(0xFF079CFF);
-final $p_dark = Color(0xFF3256C1);
-final $p_orange = Color(0xFFF06000);
-final $p_green = Color(0xFF07CC66);
+final $p_yellow = Color(0xFFFFE27A);
+final $p_orange = Color(0xFFFFBA57);
+final $p_red = Color(0xFFFF4755);
+final $p_blue = Color(0xFF8BCAFF);
+final $p_green = Color(0xFF98DB7C);

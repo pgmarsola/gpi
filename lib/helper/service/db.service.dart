@@ -12,9 +12,11 @@ class DBHelper {
       join(await getDatabasesPath(), DATABASE_NAME),
       onCreate: (db, version) async {
         await db.execute(CREATE_TABLE_OPERADOR_SCRIPT);
+        await db.execute(CREATE_TABLE_CURSOS_SCRIPT);
       },
       onUpgrade: (Database db, int oldVersion, int newVersion) async {
         await db.execute(CREATE_TABLE_OPERADOR_SCRIPT);
+        await db.execute(CREATE_TABLE_CURSOS_SCRIPT);
       },
       version: versionDB,
     );

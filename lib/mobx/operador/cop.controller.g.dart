@@ -41,6 +41,38 @@ mixin _$CopController on _CopControllerBase, Store {
     });
   }
 
+  late final _$cursoAtom =
+      Atom(name: '_CopControllerBase.curso', context: context);
+
+  @override
+  Cursos? get curso {
+    _$cursoAtom.reportRead();
+    return super.curso;
+  }
+
+  @override
+  set curso(Cursos? value) {
+    _$cursoAtom.reportWrite(value, super.curso, () {
+      super.curso = value;
+    });
+  }
+
+  late final _$cursosAtom =
+      Atom(name: '_CopControllerBase.cursos', context: context);
+
+  @override
+  ObservableList<Cursos>? get cursos {
+    _$cursosAtom.reportRead();
+    return super.cursos;
+  }
+
+  @override
+  set cursos(ObservableList<Cursos>? value) {
+    _$cursosAtom.reportWrite(value, super.cursos, () {
+      super.cursos = value;
+    });
+  }
+
   late final _$loadAtom =
       Atom(name: '_CopControllerBase.load', context: context);
 
@@ -78,6 +110,8 @@ mixin _$CopController on _CopControllerBase, Store {
     return '''
 operador: ${operador},
 operadores: ${operadores},
+curso: ${curso},
+cursos: ${cursos},
 load: ${load}
     ''';
   }

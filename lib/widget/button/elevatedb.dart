@@ -28,7 +28,7 @@ class _ElevatedBState extends State<ElevatedB> {
                 fontSize: 16, fontWeight: FontWeight.bold, color: $n_white),
           ),
           style: ElevatedButton.styleFrom(
-            primary: $p_dark,
+            primary: $s_basic1,
             padding: EdgeInsets.symmetric(vertical: responsive(context) * 2),
           )),
     );
