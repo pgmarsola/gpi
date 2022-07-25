@@ -34,6 +34,8 @@ abstract class _CopControllerBase with Store {
   saveOperador(Iterable<Operador> contain) async {
     load = true;
     if (contain.isNotEmpty) {
+      await _operadorService!.delete(1);
+      await _cursosService!.delete(1);
       await _operadorService!.create(Operador(
         cargo: contain.first.cargo ?? " ",
         status: contain.first.status ?? 0,
