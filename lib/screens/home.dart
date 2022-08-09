@@ -37,8 +37,8 @@ class _HomeState extends State<Home> {
             child: Card(
           margin: const EdgeInsets.all(10),
           child: ListTile(
-            title: Text(" "),
-            subtitle: Text("Realizado em: " + widget.cursos!.ipa.toString()),
+            title: Text(widget.cursos!.key.toString()),
+            subtitle: Text("Realizado em: " + widget.cursos!.data.toString()),
           ),
         )),
       ])),
