@@ -7,7 +7,7 @@ class Operador {
   String? nomeFuncionario;
   String? cpf;
   String? nomeEmpresa;
-  String? dataAdmissao;
+  int? dataAdmissao;
   String? cargo;
   int? status;
   String? tipo;
@@ -34,7 +34,7 @@ class Operador {
     cpf = json['cpf'];
     nomeEmpresa = json['nome_empresa'];
     dataAdmissao = json['data_admissao'];
-    cargo = json['cargo '];
+    cargo = json['cargo'];
     status = json['status'];
     tipo = json['tipo'];
     if (json['cursos'] != null) {
@@ -54,7 +54,7 @@ class Operador {
     data['cpf'] = this.cpf;
     data['nome_empresa'] = this.nomeEmpresa;
     data['data_admissao'] = this.dataAdmissao;
-    data['cargo '] = this.cargo;
+    data['cargo'] = this.cargo;
     data['status'] = this.status;
     data['tipo'] = this.tipo;
     if (this.cursos != null) {

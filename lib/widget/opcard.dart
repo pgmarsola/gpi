@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gpi/helper/coded.dart';
 import 'package:gpi/util/color.dart';
 import 'package:gpi/util/responsive.dart';
 
@@ -17,6 +17,9 @@ class OpCard extends StatefulWidget {
 class _OpCardState extends State<OpCard> {
   @override
   Widget build(BuildContext context) {
+    var admissao;
+    var data_ad = codeDate(widget.op!.dataAdmissao, admissao);
+
     return Container(
       margin: EdgeInsets.all(responsive(context) * 2),
       child: Column(
@@ -68,7 +71,7 @@ class _OpCardState extends State<OpCard> {
                 ),
                 const Divider(),
                 Text(
-                  "Data de Admissão: ${widget.op!.dataAdmissao}",
+                  "Data de Admissão: ${data_ad}",
                   style: GoogleFonts.ubuntu(color: $n_dark, fontSize: 14),
                 ),
                 const Divider(),

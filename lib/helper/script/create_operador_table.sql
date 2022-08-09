@@ -7,7 +7,7 @@ CREATE TABLE operador
     nomeFuncionario TEXT,
     cpf TEXT,
     nomeEmpresa TEXT,
-    dataAdmissao TEXT,
+    dataAdmissao INTEGER,
     cargo TEXT,
     status INTEGER,
     tipo TEXT

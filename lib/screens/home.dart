@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gpi/helper/coded.dart';
 import 'package:gpi/mobx/operador/operador.controller.dart';
 import 'package:gpi/model/cursos.model.dart';
 import 'package:gpi/model/operador.model.dart';
@@ -26,6 +27,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    var value;
+    var data = codeDate(widget.cursos!.data, value);
     return Scaffold(
       appBar: TopBar(),
       drawer: Burger(widget.data!.nomeFuncionario.toString()),
@@ -37,9 +40,15 @@ class _HomeState extends State<Home> {
             child: Card(
           margin: const EdgeInsets.all(10),
           child: ListTile(
-            title: Text(widget.cursos!.key.toString()),
-            subtitle: Text("Realizado em: " + widget.cursos!.data.toString()),
-          ),
+              title: Text(widget.cursos!.key.toString()),
+              subtitle: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text("Realizado em: ${data}"),
+                  Text("Realizado em: ${widget.cursos!.certificado}"),
+                ],
+              )),
         )),
       ])),
     );

@@ -43,7 +43,7 @@ abstract class _CopControllerBase with Store {
         tipo: contain.first.tipo ?? " ",
         coordenador: contain.first.coordenador ?? " ",
         cpf: contain.first.cpf ?? " ",
-        dataAdmissao: contain.first.dataAdmissao ?? " ",
+        dataAdmissao: contain.first.dataAdmissao ?? 0,
         filial: contain.first.filial ?? " ",
         nomeEmpresa: contain.first.nomeEmpresa ?? " ",
         nomeFuncionario: contain.first.nomeFuncionario ?? " ",
