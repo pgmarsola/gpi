@@ -4,7 +4,7 @@ import 'package:gpi/helper/coded.dart';
 import 'package:gpi/util/color.dart';
 import 'package:gpi/util/responsive.dart';
 
-import '../model/operador.model.dart';
+import '../../../model/operador.model.dart';
 
 class OpCard extends StatefulWidget {
   final Operador? op;

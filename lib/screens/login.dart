@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
                                           MaterialPageRoute(
                                               builder: (context) => Home(
                                                   _copController!.operador,
-                                                  _copController!.curso)));
+                                                  _copController!.cursos)));
                                     } else {
                                       setState(() {
                                         error = true;
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                                       MaterialPageRoute(
                                           builder: (context) => Home(
                                               _copController!.operador,
-                                              _copController!.curso)));
+                                              _copController!.cursos)));
                                 } else {
                                   setState(() {
                                     error = true;

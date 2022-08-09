@@ -34,8 +34,8 @@ abstract class _CopControllerBase with Store {
   saveOperador(Iterable<Operador> contain) async {
     load = true;
     if (contain.isNotEmpty) {
-      await _operadorService!.delete(1);
-      await _cursosService!.delete(1);
+      await _operadorService!.delete();
+      await _cursosService!.delete();
       await _operadorService!.create(Operador(
         cargo: contain.first.cargo ?? " ",
         status: contain.first.status ?? 0,
@@ -48,11 +48,13 @@ abstract class _CopControllerBase with Store {
         nomeEmpresa: contain.first.nomeEmpresa ?? " ",
         nomeFuncionario: contain.first.nomeFuncionario ?? " ",
       ));
-      await _cursosService!.create(Cursos(
-        key: contain.first.cursos![0].key ?? " ",
-        data: contain.first.cursos![0].data ?? 0,
-        certificado: contain.first.cursos![0].certificado ?? " ",
-      ));
+      for (int i = 0; i < contain.first.cursos!.length; i++) {
+        await _cursosService!.create(Cursos(
+          key: contain.first.cursos![i].key ?? " ",
+          data: contain.first.cursos![i].data ?? 0,
+          certificado: contain.first.cursos![i].certificado ?? " ",
+        ));
+      }
       await getOperador();
     }
     load = false;
@@ -65,7 +67,6 @@ abstract class _CopControllerBase with Store {
 
     if (operadores!.isNotEmpty) {
       operador = operadores![0];
-      curso = cursos![0];
     }
   }
 }

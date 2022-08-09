@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gpi/helper/coded.dart';
 import 'package:gpi/mobx/operador/operador.controller.dart';
 import 'package:gpi/model/cursos.model.dart';
 import 'package:gpi/model/operador.model.dart';
 import 'package:gpi/util/color.dart';
 import 'package:gpi/widget/burger.dart';
-import 'package:gpi/widget/opcard.dart';
+import 'package:gpi/widget/card/cursocard.dart';
+import 'package:gpi/widget/card/opcard.dart';
 import 'package:gpi/widget/topbar.dart';
 
 class Home extends StatefulWidget {
   final Operador? data;
-  final Cursos? cursos;
+  final List<Cursos>? cursos;
   const Home(this.data, this.cursos, {Key? key}) : super(key: key);
 
   @override
@@ -27,8 +29,27 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    var value;
-    var data = codeDate(widget.cursos!.data, value);
+    Widget _list(
+      List<Cursos>? data,
+      BuildContext context,
+    ) {
+      List<Widget> list = <Widget>[];
+      for (int i = 0; i < 4; i++) {
+        var value;
+        var dataCurso = codeDate(widget.cursos![i].data, value);
+
+        list.add(Center(
+            child: Card(
+          margin: const EdgeInsets.all(10),
+          child: ListTile(
+            title: Text(widget.cursos![i].key.toString()),
+            subtitle: Text("Realizado em: ${dataCurso}"),
+          ),
+        )));
+      }
+      return Column(children: list);
+    }
+
     return Scaffold(
       appBar: TopBar(),
       drawer: Burger(widget.data!.nomeFuncionario.toString()),
@@ -36,20 +57,13 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
           child: Column(children: [
         OpCard(widget.data),
-        Center(
-            child: Card(
-          margin: const EdgeInsets.all(10),
-          child: ListTile(
-              title: Text(widget.cursos!.key.toString()),
-              subtitle: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+        widget.cursos!.isNotEmpty
+            ? Observer(builder: (_) => _list(widget.cursos!, context))
+            : Column(
                 children: [
-                  Text("Realizado em: ${data}"),
-                  Text("Realizado em: ${widget.cursos!.certificado}"),
+                  const Text("Não foi possivel carregar dados em tela")
                 ],
-              )),
-        )),
+              )
       ])),
     );
   }

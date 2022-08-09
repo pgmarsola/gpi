@@ -37,8 +37,8 @@ class CursosService {
     }
   }
 
-  Future<int> delete(int id) async {
+  Future<int> delete() async {
     final Database _db = await dbHelper.initDatabase();
-    return await _db.delete(TB_CURSOS, where: '$id = ?', whereArgs: [id]);
+    return await _db.delete(TB_CURSOS);
   }
 }
