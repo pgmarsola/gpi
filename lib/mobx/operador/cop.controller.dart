@@ -28,12 +28,15 @@ abstract class _CopControllerBase with Store {
   ObservableList<Cursos>? cursos;
 
   @observable
+  ObservableList<Cursos>? organized;
+
+  @observable
   bool load = false;
 
   @action
-  saveOperador(Iterable<Operador> contain) async {
+  saveOperador(Iterable<Operador>? contain) async {
     load = true;
-    if (contain.isNotEmpty) {
+    if (contain!.isNotEmpty) {
       await _operadorService!.delete();
       await _cursosService!.delete();
       await _operadorService!.create(Operador(
@@ -63,10 +66,22 @@ abstract class _CopControllerBase with Store {
   @action
   getOperador() async {
     operadores = ObservableList<Operador>.of(await _operadorService!.all());
-    cursos = ObservableList<Cursos>.of(await _cursosService!.all());
 
     if (operadores!.isNotEmpty) {
       operador = operadores![0];
     }
+  }
+
+  @action
+  getCursos() async {
+    load = true;
+    cursos = ObservableList<Cursos>.of(await _cursosService!.all());
+
+    if (cursos!.isNotEmpty) {
+      var aux = cursos!
+        ..sort(((a, b) => a.data.toString().compareTo(b.data.toString())));
+      organized = ObservableList<Cursos>.of(aux.take(1));
+    }
+    load = false;
   }
 }

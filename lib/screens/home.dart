@@ -1,54 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gpi/helper/coded.dart';
+import 'package:gpi/mobx/operador/cop.controller.dart';
 import 'package:gpi/mobx/operador/operador.controller.dart';
 import 'package:gpi/model/cursos.model.dart';
 import 'package:gpi/model/operador.model.dart';
+import 'package:gpi/screens/certificates.dart';
 import 'package:gpi/util/color.dart';
+import 'package:gpi/util/navigator.dart';
 import 'package:gpi/widget/burger.dart';
-import 'package:gpi/widget/card/cursocard.dart';
+import 'package:gpi/widget/card/cardalert.dart';
+import 'package:gpi/widget/card/listcursos.dart';
 import 'package:gpi/widget/card/opcard.dart';
+import 'package:gpi/widget/card/tileitem.dart';
+import 'package:gpi/widget/loading.dart';
 import 'package:gpi/widget/topbar.dart';
 
 class Home extends StatefulWidget {
   final Operador? data;
-  final List<Cursos>? cursos;
-  const Home(this.data, this.cursos, {Key? key}) : super(key: key);
+  const Home(this.data, {Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  OperadorController? _operadorController;
+  CopController? _copController = CopController();
 
   @override
   void initState() {
     super.initState();
+    _copController = CopController();
+    _getCursos();
+  }
+
+  _getCursos() async {
+    _copController = CopController();
+    _copController!.getCursos();
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget _list(
-      List<Cursos>? data,
-      BuildContext context,
-    ) {
-      List<Widget> list = <Widget>[];
-      for (int i = 0; i < 4; i++) {
-        var value;
-        var dataCurso = codeDate(widget.cursos![i].data, value);
-
-        list.add(Center(
-            child: Card(
-          margin: const EdgeInsets.all(10),
-          child: ListTile(
-            title: Text(widget.cursos![i].key.toString()),
-            subtitle: Text("Realizado em: ${dataCurso}"),
-          ),
-        )));
-      }
-      return Column(children: list);
-    }
+    var value;
+    var dataCurso = codeDate(_copController!.organized![0].data, value);
 
     return Scaffold(
       appBar: TopBar(),
@@ -57,13 +52,25 @@ class _HomeState extends State<Home> {
       body: SingleChildScrollView(
           child: Column(children: [
         OpCard(widget.data),
-        widget.cursos!.isNotEmpty
-            ? Observer(builder: (_) => _list(widget.cursos!, context))
-            : Column(
-                children: [
-                  const Text("Não foi possivel carregar dados em tela")
-                ],
-              )
+        Observer(builder: (context) {
+          if (_copController!.load) {
+            return Loading();
+          } else {
+            if (_copController!.organized != null &&
+                _copController!.organized!.isNotEmpty) {
+              return ListCursos(
+                  "Último Certificado Obtido",
+                  Observer(
+                      builder: (_) => TileItem(
+                          _copController!.organized![0].key, dataCurso)), () {
+                Nav.push(context, Certificates());
+              });
+            } else {
+              return const CardAlert("Certificados",
+                  "Você não possui nenhum certificado disponível");
+            }
+          }
+        })
       ])),
     );
   }

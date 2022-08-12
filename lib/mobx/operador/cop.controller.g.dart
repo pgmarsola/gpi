@@ -73,6 +73,22 @@ mixin _$CopController on _CopControllerBase, Store {
     });
   }
 
+  late final _$organizedAtom =
+      Atom(name: '_CopControllerBase.organized', context: context);
+
+  @override
+  ObservableList<Cursos>? get organized {
+    _$organizedAtom.reportRead();
+    return super.organized;
+  }
+
+  @override
+  set organized(ObservableList<Cursos>? value) {
+    _$organizedAtom.reportWrite(value, super.organized, () {
+      super.organized = value;
+    });
+  }
+
   late final _$loadAtom =
       Atom(name: '_CopControllerBase.load', context: context);
 
@@ -93,7 +109,7 @@ mixin _$CopController on _CopControllerBase, Store {
       AsyncAction('_CopControllerBase.saveOperador', context: context);
 
   @override
-  Future saveOperador(Iterable<Operador> contain) {
+  Future saveOperador(Iterable<Operador>? contain) {
     return _$saveOperadorAsyncAction.run(() => super.saveOperador(contain));
   }
 
@@ -105,6 +121,14 @@ mixin _$CopController on _CopControllerBase, Store {
     return _$getOperadorAsyncAction.run(() => super.getOperador());
   }
 
+  late final _$getCursosAsyncAction =
+      AsyncAction('_CopControllerBase.getCursos', context: context);
+
+  @override
+  Future getCursos() {
+    return _$getCursosAsyncAction.run(() => super.getCursos());
+  }
+
   @override
   String toString() {
     return '''
@@ -112,6 +136,7 @@ operador: ${operador},
 operadores: ${operadores},
 curso: ${curso},
 cursos: ${cursos},
+organized: ${organized},
 load: ${load}
     ''';
   }
