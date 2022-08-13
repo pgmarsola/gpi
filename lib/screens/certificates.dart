@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gpi/widget/topbar.dart';
+import 'package:gpi/model/cursos.model.dart';
 
 class Certificates extends StatefulWidget {
-  const Certificates({Key? key}) : super(key: key);
+  final List<Cursos>? list;
+  const Certificates(this.list, {Key? key}) : super(key: key);
 
   @override
   State<Certificates> createState() => _CertificatesState();

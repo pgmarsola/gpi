@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gpi/mobx/auth/auth.controller.dart';
 import 'package:gpi/mobx/operador/cop.controller.dart';
@@ -93,6 +92,7 @@ class _LoginState extends State<Login> {
                           ? Loading()
                           : ElevatedB(() async {
                               _handkeSignIn(cpf_controller.text);
+                              print("apertou");
                             }, "Entrar")
                     ]))));
   }

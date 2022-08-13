@@ -18,9 +18,6 @@ class CursoCard extends StatefulWidget {
 class _CursoCardState extends State<CursoCard> {
   @override
   Widget build(BuildContext context) {
-    var value;
-    var data = codeDate(widget.cursos!.data, value);
-
     return Card(
       margin: EdgeInsets.all(responsive(context) * 2),
       child: Column(
@@ -68,7 +65,7 @@ class _CursoCardState extends State<CursoCard> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Realizado em: ${data}",
+                  "Realizado em: ${date(widget.cursos!.data)}",
                   style: GoogleFonts.ubuntu(color: $n_dark, fontSize: 14),
                 ),
                 const Divider(),

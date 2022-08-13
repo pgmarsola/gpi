@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-String? codeDate(value, var date) {
+String? codeDate(value) {
+  var date;
   switch (value) {
     case 31804:
       date = "27/01/1987";
@@ -1963,4 +1964,10 @@ String? codeDate(value, var date) {
       break;
   }
   return date;
+}
+
+String? date(var value) {
+  var retorno = codeDate(value);
+
+  return retorno;
 }

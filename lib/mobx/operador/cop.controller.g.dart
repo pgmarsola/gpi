@@ -73,22 +73,6 @@ mixin _$CopController on _CopControllerBase, Store {
     });
   }
 
-  late final _$organizedAtom =
-      Atom(name: '_CopControllerBase.organized', context: context);
-
-  @override
-  ObservableList<Cursos>? get organized {
-    _$organizedAtom.reportRead();
-    return super.organized;
-  }
-
-  @override
-  set organized(ObservableList<Cursos>? value) {
-    _$organizedAtom.reportWrite(value, super.organized, () {
-      super.organized = value;
-    });
-  }
-
   late final _$loadAtom =
       Atom(name: '_CopControllerBase.load', context: context);
 
@@ -136,7 +120,6 @@ operador: ${operador},
 operadores: ${operadores},
 curso: ${curso},
 cursos: ${cursos},
-organized: ${organized},
 load: ${load}
     ''';
   }

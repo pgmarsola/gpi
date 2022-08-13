@@ -28,9 +28,6 @@ abstract class _CopControllerBase with Store {
   ObservableList<Cursos>? cursos;
 
   @observable
-  ObservableList<Cursos>? organized;
-
-  @observable
   bool load = false;
 
   @action
@@ -80,7 +77,8 @@ abstract class _CopControllerBase with Store {
     if (cursos!.isNotEmpty) {
       var aux = cursos!
         ..sort(((a, b) => a.data.toString().compareTo(b.data.toString())));
-      organized = ObservableList<Cursos>.of(aux.take(1));
+      var auxlist = ObservableList<Cursos>.of(aux.take(1));
+      curso = auxlist[0];
     }
     load = false;
   }

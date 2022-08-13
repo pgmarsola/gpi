@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gpi/helper/coded.dart';
 import 'package:gpi/mobx/operador/cop.controller.dart';
-import 'package:gpi/mobx/operador/operador.controller.dart';
-import 'package:gpi/model/cursos.model.dart';
 import 'package:gpi/model/operador.model.dart';
 import 'package:gpi/screens/certificates.dart';
 import 'package:gpi/util/color.dart';
@@ -42,28 +39,24 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    var value;
-    var dataCurso = codeDate(_copController!.organized![0].data, value);
-
     return Scaffold(
       appBar: TopBar(),
       drawer: Burger(widget.data!.nomeFuncionario.toString()),
       backgroundColor: $n_lightest,
       body: SingleChildScrollView(
           child: Column(children: [
-        OpCard(widget.data),
+        OpCard(widget.data!),
         Observer(builder: (context) {
           if (_copController!.load) {
             return Loading();
           } else {
-            if (_copController!.organized != null &&
-                _copController!.organized!.isNotEmpty) {
+            if (_copController!.curso != null) {
               return ListCursos(
                   "Último Certificado Obtido",
                   Observer(
-                      builder: (_) => TileItem(
-                          _copController!.organized![0].key, dataCurso)), () {
-                Nav.push(context, Certificates());
+                      builder: (_) => TileItem(_copController!.curso!.key,
+                          date(_copController!.curso!.data))), () {
+                Nav.push(context, Certificates(_copController!.cursos));
               });
             } else {
               return const CardAlert("Certificados",

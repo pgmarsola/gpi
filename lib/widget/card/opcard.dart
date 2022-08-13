@@ -17,9 +17,6 @@ class OpCard extends StatefulWidget {
 class _OpCardState extends State<OpCard> {
   @override
   Widget build(BuildContext context) {
-    var admissao;
-    var data_ad = codeDate(widget.op!.dataAdmissao, admissao);
-
     return Container(
       margin: EdgeInsets.all(responsive(context) * 2),
       child: Column(
@@ -71,7 +68,7 @@ class _OpCardState extends State<OpCard> {
                 ),
                 const Divider(),
                 Text(
-                  "Data de Admissão: ${data_ad}",
+                  "Data de Admissão: ${date(widget.op!.dataAdmissao)}",
                   style: GoogleFonts.ubuntu(color: $n_dark, fontSize: 14),
                 ),
                 const Divider(),
