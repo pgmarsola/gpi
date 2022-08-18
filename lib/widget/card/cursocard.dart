@@ -29,14 +29,14 @@ class _CursoCardState extends State<CursoCard> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(responsive(context) * 1),
                     topRight: Radius.circular(responsive(context) * 1)),
-                color: $p_orange),
+                color: $n_medium),
             alignment: Alignment.center,
             // ignore: sort_child_properties_last
             child: Row(
               children: [
                 Icon(
                   FontAwesomeIcons.fileCircleCheck,
-                  color: Colors.white,
+                  color: $n_white,
                   size: responsive(context) * 2.5,
                 ),
                 SizedBox(

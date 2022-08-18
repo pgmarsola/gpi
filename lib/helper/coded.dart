@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 String? codeDate(value) {
-  var date;
+  var date = "";
   switch (value) {
     case 31804:
       date = "27/01/1987";

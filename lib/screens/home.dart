@@ -7,6 +7,7 @@ import 'package:gpi/screens/certificates.dart';
 import 'package:gpi/util/color.dart';
 import 'package:gpi/util/navigator.dart';
 import 'package:gpi/widget/burger.dart';
+import 'package:gpi/widget/button/ielevatedb.dart';
 import 'package:gpi/widget/card/cardalert.dart';
 import 'package:gpi/widget/card/listcursos.dart';
 import 'package:gpi/widget/card/opcard.dart';
@@ -63,7 +64,8 @@ class _HomeState extends State<Home> {
                   "Você não possui nenhum certificado disponível");
             }
           }
-        })
+        }),
+        IElevatedB(() {}, "verificar operador")
       ])),
     );
   }

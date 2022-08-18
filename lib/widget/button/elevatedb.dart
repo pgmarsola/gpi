@@ -22,6 +22,7 @@ class _ElevatedBState extends State<ElevatedB> {
           vertical: responsive(context) * 2),
       child: ElevatedButton(
           onPressed: widget.press,
+          // ignore: sort_child_properties_last
           child: Text(
             widget.title,
             style: GoogleFonts.montserrat(
